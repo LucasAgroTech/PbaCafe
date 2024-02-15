@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Inscrições</title>
+  </head>
+  <body>
+    <h1>Lista de Inscrições</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome do Desafio</th>
+          <th>Responsável</th>
+          <th>Departamento</th>
+          <th>Área</th>
+          <th>Descrição</th>
+          <!-- Adicione mais cabeçalhos de tabela conforme necessário -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for inscricao in inscricoes %}
+        <tr>
+          <td>{{ inscricao.nome_desafio }}</td>
+          <td>{{ inscricao.responsavel }}</td>
+          <td>{{ inscricao.departamento }}</td>
+          <td>{{ inscricao.area }}</td>
+          <td>{{ inscricao.descricao }}</td>
+          <td>
+            {% if inscricao.anexo_url %}
+            <a href="{{ inscricao.anexo_url }}" target="_blank">Ver Anexo</a>
+            <!-- Link para o anexo -->
+            {% else %} Sem anexo {% endif %}
+          </td>
+          <!-- Adicione mais células conforme necessário -->
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

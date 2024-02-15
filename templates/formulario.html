@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRÊMIO CNA DE INOVAÇÃO 2024</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='estilo.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <form action="/inscricao" method="post" enctype="multipart/form-data">
+        <div class="logo-container">
+          <img src="static/logo.png" alt="Logo Esquerda" class="logo-left" />
+        </div>
+        <h3>
+          Bem-vindo ao processo de inscrição para o
+          <strong>Prêmio CNA de Inovação 2024</strong>
+        </h3>
+        <p>
+          O Prêmio CNA de Inovação 2024 homenageia Alysson Paolinelli e busca
+          promover inovações no agronegócio que abordem sustentabilidade e
+          eficiência. O prêmio incentiva projetos com excelência técnica e
+          viabilidade prática, visando a evolução positiva do setor. Os
+          participantes são convidados a detalhar suas inovações no formulário
+          para uma avaliação completa.
+        </p>
+        <div class="title-block">
+          <h2><i class="fas fa-user"></i> Informações do Participante</h2>
+        </div>
+        <div class="form-group">
+          <label for="nome_desafio">Nome do desafio</label>
+          <input type="text" id="nome_desafio" name="nome_desafio" />
+        </div>
+        <div class="form-group">
+          <label for="responsavel">Responsável</label>
+          <input type="text" id="responsavel" name="responsavel" />
+        </div>
+        <div class="row">
+          <div class="form-group2">
+            <label for="departamento">Departamento</label>
+            <select id="departamento" name="departamento">
+              <option value="CNA">CNA</option>
+              <option value="Senar">Senar</option>
+              <option value="ICNA">ICNA</option>
+            </select>
+          </div>
+          <div class="form-group3">
+            <label for="area">Área</label>
+            <select id="area" name="area">
+              <option value="Jurídico">Jurídico</option>
+              <option value="RH">RH</option>
+              <option value="Administrativo">Administrativo</option>
+              <option value="Administrativo">Financeiro</option>
+              <option value="Assistência Técnica">Assistência Técnica</option>
+            </select>
+          </div>
+        </div>
+        <div class="title-block">
+          <h2><i class="fas fa-bomb"></i> Informações do Desafio</h2>
+        </div>
+        <div class="form-group">
+          <label for="descricao"
+            >Descrição detalhada sobre o problema ou oportunidade</label
+          >
+          <textarea id="descricao" name="descricao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="resultado_esperado"
+            >Qual resultado você deseja alcançar</label
+          >
+          <textarea
+            id="resultado_esperado"
+            name="resultado_esperado"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="necessidade">Necessidade ou relevância</label>
+          <textarea id="necessidade" name="necessidade"></textarea>
+        </div>
+        <div class="form-group">
+          <div class="flex-container">
+            <label for="tipo_desafio">Selecione o(s) tipo(s) de desafio:</label>
+            <span class="right-aligned-text"
+              >Ctrl+clique para múltiplas seleções</span
+            >
+          </div>
+          <select id="tipo_desafio" name="tipo_desafio[]" multiple>
+            <option value="Redução de custos">💰 Redução de custos</option>
+            <option value="Prevenção de risco">⚠️ Prevenção de risco</option>
+            <option value="Receita incremental">📈 Receita incremental</option>
+            <option value="Nova receita">🆕 Nova receita</option>
+            <option value="Produtividade">🏭 Produtividade</option>
+            <option value="Reputação e Impacto social">
+              🌍 Reputação e Impacto social
+            </option>
+            <option value="Outros">🔧 Outros</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="explicacao"
+            >Explique resumidamente sua ideia para resolver esse desafio</label
+          >
+          <textarea id="explicacao" name="explicacao"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="valor_agregado">Como sua ideia agrega valor?</label>
+          <textarea id="valor_agregado" name="valor_agregado"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="recursos">Recursos necessários</label>
+          <textarea id="recursos" name="recursos"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tentativas">Tentativas de implementação</label>
+          <input type="text" id="tentativas" name="tentativas" />
+        </div>
+        <div class="title-block">
+          <h2><i class="fas fa-upload"></i> Anexos</h2>
+        </div>
+        <div class="flex-row">
+          <div class="form-group input-icon">
+            <label for="anexar_documentos">Anexar Documentos</label>
+            <input
+              type="file"
+              id="anexar_documentos"
+              name="anexar_documentos"
+              multiple
+            />
+          </div>
+          <div class="form-group input-icon2">
+            <label for="link_materiais">Incluir Link de Materiais</label>
+            <input
+              type="url"
+              id="link_materiais"
+              name="link_materiais"
+              placeholder="https://..."
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Enviar" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
