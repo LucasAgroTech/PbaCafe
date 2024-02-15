@@ -6,10 +6,14 @@ import cloudinary
 import os
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-    "DATABASE_URL", "sua_string_de_conexao_postgresql"
-)
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+uri = os.getenv(
+    "DATABASE_URL"
+)  # Obter a URI do banco de dados a partir das variáveis de ambiente
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace(
+        "postgres://", "postgresql://", 1
+    )  # Substituir apenas a primeira ocorrência
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
 db = SQLAlchemy(app)
 
 cloudinary.config(
