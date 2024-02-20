@@ -1,0 +1,106 @@
+<!-- templates/email_template.html -->
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #444444; /* Cor do texto em preto */
+        text-align: justify;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+      }
+      .header-img {
+        width: 100%; /* Faz a imagem ocupar toda a largura do container */
+        height: auto; /* Mantém a proporção da imagem */
+        display: block; /* Exibe a imagem como um bloco */
+        margin: 0 auto; /* Centraliza a imagem horizontalmente */
+      }
+      h1,
+      h2 {
+        color: #5c4033; /* Tons escuros de marrom para h1 e h2 */
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        background: #8b4513; /* Cor de fundo do rodapé em um tom marrom */
+        color: #ffffff; /* Cor do texto no rodapé em branco para contraste */
+      }
+      .logo {
+        width: 60px; /* Ajuste a largura conforme necessário */
+        margin-right: 10px;
+      }
+      .address {
+        font-size: 0.9em;
+        text-align: left;
+        max-width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        class="header-img"
+        src="https://i.imgur.com/3x7LETQ.png"
+        alt="Logo da Empresa"
+      />
+      <h1>Inscrição confirmada</h1>
+      <h2>Olá, {{ nome_produtor }}!</h2>
+      <p>
+        É com imenso prazer que confirmamos sua participação no PRÊMIO CNA DE
+        INOVAÇÃO 2024 - Alysson Paolinelli. Este concurso, organizado pela
+        Confederação da Agricultura e Pecuária do Brasil (CNA) em conjunto com o
+        Serviço Nacional de Aprendizagem Rural (Senar) e o Instituto CNA, é uma
+        plataforma excepcional para impulsionar inovações tecnológicas que
+        atendam aos desafios enfrentados pelos produtores rurais no seu dia a
+        dia.
+      </p>
+      <p>
+        De acordo com as normas do prêmio, ressaltamos que o prazo para a
+        submissão das propostas de inovação se encerra em 23 de abril de 2024. A
+        data final para o recebimento dos projetos pela equipe organizadora é 30
+        de abril de 2024. As fases de avaliação e as datas cruciais estão
+        minuciosamente especificadas no regulamento anexado.
+      </p>
+      <p>
+        Encorajamos você a desenvolver suas propostas com dedicação e atenção
+        aos detalhes, aderindo às diretrizes estipuladas, para que possamos, em
+        conjunto, exaltar as soluções inovadoras que contribuirão
+        significativamente para o avanço da agricultura e pecuária em nosso
+        país. Estamos ansiosos para conhecer suas ideias inovadoras e lhe
+        desejamos êxito neste desafio.
+      </p>
+      <p>
+        Para quaisquer esclarecimentos ou informações adicionais, por favor,
+        sinta-se à vontade para entrar em contato conosco.
+      </p>
+      <p>Atenciosamente,</p>
+      <p>Sistema CNA/Senar/ICNA</p>
+
+      <div class="footer">
+        <img
+          src="https://i.imgur.com/tAZu4tq.png"
+          alt="Logo da Empresa"
+          class="logo"
+        />
+        <div class="address">
+          SGAN Quadra 601, Módulo K - Ed. Antônio Ernesto de Salvo<br />
+          Brasília - Distrito Federal, CEP: 70830-903.<br />
+          Sistema CNA/SENAR/ICNA.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
