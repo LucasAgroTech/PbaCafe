@@ -3,10 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de Inscrições</title>
+    <title>iCNA | INSCRIÇÕES REALIZADAS</title>
+    <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #005146;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #005146;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+
+      thead {
+        background-color: #bea745;
+        color: #fff;
+      }
+
+      tbody tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      a {
+        color: #bea745;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .download-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-image: linear-gradient(
+          to right,
+          #bea745,
+          #9c8f35
+        ); /* Degradê do dourado claro para o dourado mais escuro */
+        color: #fff; /* Cor do texto */
+        text-decoration: none; /* Remove o sublinhado do link */
+        border-radius: 5px; /* Borda arredondada para o botão */
+        font-weight: bold; /* Texto em negrito */
+        border: none; /* Removendo borda padrão do botão, caso exista */
+        cursor: pointer; /* Muda o cursor para indicar que é clicável */
+      }
+
+      .download-btn:hover {
+        background-color: #a8963e; /* Cor de fundo do botão ao passar o mouse */
+      }
+    </style>
   </head>
   <body>
-    <h1>Lista de Inscrições</h1>
+    <div class="header-container">
+      <h1>Inscrições</h1>
+      <div style="margin-bottom: 20px">
+        <a href="/download_excel" class="download-btn"
+          >Baixar Inscrições (Excel)</a
+        >
+      </div>
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -15,6 +91,7 @@
           <th>Departamento</th>
           <th>Área</th>
           <th>Descrição</th>
+          <th>Anexos</th>
           <!-- Adicione mais cabeçalhos de tabela conforme necessário -->
         </tr>
       </thead>

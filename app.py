@@ -1,7 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, send_file
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
+import io  # Para manipulação de arquivos em memória
+import pyexcel as p
 import cloudinary.uploader
 import cloudinary
 import os
@@ -47,7 +49,30 @@ class Inscricao(db.Model):
     tentativas = db.Column(db.String(120), nullable=True)
     link_materiais = db.Column(db.String(120), nullable=True)
     anexo_url = db.Column(db.String(255), nullable=True)
+    outro_tipo_desafio = db.Column(db.String(255), nullable=True)
     aceite_termos = db.Column(db.Boolean, default=False, nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome_desafio": self.nome_desafio,
+            "responsavel": self.responsavel,
+            "email_usuario": self.email_usuario,
+            "departamento": self.departamento,
+            "area": self.area,
+            "descricao": self.descricao,
+            "resultado_esperado": self.resultado_esperado,
+            "necessidade": self.necessidade,
+            "tipo_desafio": self.tipo_desafio,
+            "explicacao": self.explicacao,
+            "valor_agregado": self.valor_agregado,
+            "recursos": self.recursos,
+            "tentativas": self.tentativas,
+            "link_materiais": self.link_materiais,
+            "anexo_url": self.anexo_url,
+            "outro_tipo_desafio": self.outro_tipo_desafio,
+            "aceite_termos": self.aceite_termos,
+        }
 
 
 def create_tables():
@@ -75,6 +100,7 @@ def add_inscricao():
     tentativas = request.form.get("tentativas", "")
     link_materiais = request.form.get("link_materiais", "")
     aceite_termos = request.form.get("aceite_termos") == "on"
+    outro_tipo_desafio = request.form.get("outro_tipo_desafio", "")
 
     nova_inscricao = Inscricao(
         nome_desafio=nome_desafio,
@@ -92,6 +118,7 @@ def add_inscricao():
         tentativas=tentativas,
         link_materiais=link_materiais,
         aceite_termos=aceite_termos,
+        outro_tipo_desafio=outro_tipo_desafio,
     )
 
     file_to_upload = request.files.get("anexar_documentos")
@@ -136,6 +163,25 @@ def formulario():
 def listar_inscricoes():
     inscricoes = Inscricao.query.all()  # Busca todas as inscrições no banco de dados
     return render_template("listar_inscricoes.html", inscricoes=inscricoes)
+
+
+# Rota para baixar os dados em Excel
+@app.route("/download_excel", methods=["GET"])
+def download_excel():
+    query_sets = Inscricao.query.all()
+    data = [inscricao.to_dict() for inscricao in query_sets]
+
+    output = io.BytesIO()
+    sheet = p.get_sheet(records=data)
+    sheet.save_to_memory("xlsx", output)
+    output.seek(0)
+
+    return send_file(
+        output,
+        as_attachment=True,
+        download_name="Inscricoes.xlsx",  # Use 'download_name' para especificar o nome do arquivo
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
 
 
 if __name__ == "__main__":
