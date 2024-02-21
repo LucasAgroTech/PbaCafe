@@ -46,7 +46,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 30px;
+
 }
 
 
@@ -114,7 +114,7 @@ textarea {
 }
 .form-group input[type="submit"] {
     font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(to right, #005146, #005146);
+    background-image: linear-gradient(to right, #005146, #0e5d52);
     color: white;
     padding: 12px 24px;
     border: none;
@@ -174,10 +174,10 @@ textarea {
 
 
 .title-block {
-    background-image: radial-gradient(circle at left, #e1d7aae7, #e1d7aa80);
+    background-image: radial-gradient(circle at left, #BEA745, #00514687);
     padding: 10px 15px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 0px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     display: flex;
@@ -185,7 +185,7 @@ textarea {
     justify-content: flex-start;
     margin-bottom: 20px;
     margin-top: 40px;
-    margin-left: 20px;
+    margin-left: 40px;
     width: calc(100% - 25px - adicionado);
 }
 
@@ -193,7 +193,7 @@ textarea {
 .title-block h2 {
     margin: 0;
     font-size: 24px;
-    color: #3a3a3a;
+    color: #ffffff;
     display: flex;
     align-items: center;
     font-weight: 500;
@@ -280,14 +280,15 @@ select#tipo_desafio {
     align-items: center;
     margin-top: 30px;
     flex-direction: column;
+    margin-left: 15px;
 }
 
 .logo-left, .logo-right {
     display: block;
-    max-width: 80%;
+    max-width: 100.5%;
     height: auto;
     object-fit: contain;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
@@ -306,8 +307,8 @@ h3 {
     text-align: left;
     padding-left: 40px;
     padding-right: 40px;
-    margin-top: 70px;
     font-size: 24px;
+    margin-bottom: 0px;
 }
 
 .headerh3 {
@@ -330,25 +331,23 @@ p {
     margin-left: 0;
 }
 
-
-
 .pheader {
     margin-left: 40px;
 }
 
 .form-instructions2 {
     color: #666; /* Cor discreta */
-    background-color: #D9D9D9;
+    background-color: #0051463d;
     width: 105%;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 0.7rem;
   }
 
   .form-instructions {
     color: #666; /* Cor discreta */
-    background-color: #D9D9D9;
+    background-color: #0051463d;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 0.7rem;
   }
 
@@ -378,7 +377,7 @@ p {
 
 .checkbox-main-container {
     display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: center;
     width: 95%;
     margin-left: 4;
     padding-top:1rem;
@@ -386,12 +385,14 @@ p {
 
 .checkbox-container {
     display: flex;
-    align-items: center; /* Alinha o checkbox e o label verticalmente */
+    align-items: center;
     text-align: left;
+    align-content: flex-start;
+    margin-top: 1rem;
 }
 
 .custom-checkbox {
-    margin-right: 10px; /* Espaço entre o checkbox e o texto */
+    margin-right: 10px;
 }
 
 .sub-label {

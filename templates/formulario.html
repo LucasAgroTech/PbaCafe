@@ -53,6 +53,9 @@
           margin-top: 3rem;
           margin-bottom: 0.5rem;
         }
+        .title-block {
+          margin-left: 20px;
+        }
         .title-block h2 {
           font-size: 20px;
         }
@@ -61,7 +64,7 @@
         }
         .form-group2 {
           width: 96%;
-          margin-left: 2rem;
+          margin-left: 0px;
         }
         .form-group {
           width: 90%; /* Garante que os inputs ocupem a largura total */
@@ -118,7 +121,6 @@
         .flex-row {
           flex-direction: column;
           gap: 5px;
-          margin-bottom: 2rem;
         }
         .form-group input[type="text"],
         .form-group input[type="url"],
@@ -133,9 +135,8 @@
           font-size: 16px;
         }
         .checkbox-main-container {
-          max-width: 95%;
-          padding-top:1rem;
-          border-top: solid 1px #D7D7D7;
+          max-width: 98%;
+          padding-top:0.5rem;
         }
       }
     </style>
@@ -144,22 +145,14 @@
     <div class="form-wrapper">
       <form action="/inscricao" method="post" enctype="multipart/form-data">
         <div class="logo-container">
-          <img src="static/logo.png" alt="Logo Esquerda" class="logo-left" />
+          <img src="static/logo.svg" alt="Logo Esquerda" class="logo-left" />
         </div>
         <h3 class"headerh3">
           Formulário de inscrição para o
-          <strong>Prêmio CNA de Inovação 2024 - Alysson</strong>
+          <strong>Prêmio CNA de Inovação 2024</strong>
         </h3>
         <p class="pheader">
-          Agregar valor à cultura organizacional do Sistema CNA/Senar/ICNA é um
-          dos objetivos desta premiação. Buscamos reconhecer e premiar o
-          profissional que mais se destacar na proposição de uma iniciativa
-          inovadora, estimulando o reconhecimento e a melhoria contínua das
-          atividades cotidianas e dos serviços prestados. Incentivamos os
-          funcionários a apresentarem propostas e iniciativas inovadoras que
-          contribuam para a melhoria de processos, produtos e serviços em suas
-          áreas/departamentos de atuação, premiando aquele que obtiver maior
-          destaque.
+          Agregar valor à cultura organizacional do Sistema CNA/Senar/ICNA, transformando ideias em resultados, é um dos objetivos desta premiação. Buscamos reconhecer e premiar o profissional que mais se destacar na proposição de uma iniciativa inovadora, estimulando o reconhecimento e a melhoria contínua das atividades cotidianas e dos serviços prestados. Incentivamos os funcionários a apresentarem propostas e iniciativas inovadoras que contribuam para a melhoria de processos, produtos e serviços em suas áreas/departamentos de atuação, premiando aquele que obtiver maior destaque.
         </p>
         <div class="title-block">
           <h2><i class="fas fa-user"></i> Informações do Participante</h2>
@@ -237,7 +230,7 @@
           </select>
           <!-- Campo que será exibido quando a opção "Outros" for selecionada -->
           <div id="campo_outros" style="display:none">
-            <label for="outro_tipo_desafio">Especifique outro tipo de desafio:</label>
+            <label for="outro_tipo_desafio">Especifique outro tipo de desafio</label>
             <input type="text" id="outro_tipo_desafio" name="outro_tipo_desafio" />
           </div>
         </div>        
@@ -299,19 +292,14 @@
           >
           <input type="text" id="tentativas" name="tentativas" />
         </div>
-          <div class="form-group">
-            <div class="checkbox-main-container">
-              <div class="checkbox-container">
-                <input type="checkbox" id="aceite_termos" name="aceite_termos" class="custom-checkbox" required>
-                <label for="aceite_termos" class="checkbox-label">
-                  Eu li e concordo com a <a href="URL_DA_POLITICA_DE_PRIVACIDADE" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="URL_DO_REGULAMENTO_DO_PREMIO" target="_blank">regulamento do prêmio</a>.
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-             
+
         <div class="form-group">
+          <div class="checkbox-container">
+            <input type="checkbox" id="aceite_termos" name="aceite_termos" class="custom-checkbox" required>
+            <label for="aceite_termos" class="checkbox-label">
+              Eu li e concordo com a <a href="URL_DA_POLITICA_DE_PRIVACIDADE" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="URL_DO_REGULAMENTO_DO_PREMIO" target="_blank">regulamento</a>.
+            </label>
+          </div>
           <input type="submit" value="Enviar" />
         </div>
       </form>
