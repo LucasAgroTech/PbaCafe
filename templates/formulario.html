@@ -200,7 +200,7 @@
             <p>Descreva claramente seu problema ou oportunidade, o resultado esperado e sua importância. Especifique o desafio e os benefícios da sua solução.</p>
           </div>
           <label for="descricao"
-            >Descrição detalhada sobre o problema ou oportunidade identificado (o quê)</label
+            >Descrição detalhada sobre o problema ou oportunidade identificado<span class="sub-label">(o quê)</span></label
           >
           <textarea id="descricao" name="descricao"></textarea>
         </div>
@@ -215,7 +215,7 @@
         </div>
         <div class="form-group">
           <label for="necessidade"
-            >Necessidade ou relevância (razão ou motivo pelo qual queremos resolver esse problema ou aproveitar essa oportunidade)</label
+            >Necessidade ou relevância <span class="sub-label">(razão ou motivo pelo qual queremos resolver esse problema ou aproveitar essa oportunidade)</span></label
           >
           <textarea id="necessidade" name="necessidade"></textarea>
         </div>
@@ -225,12 +225,14 @@
             <span class="right-aligned-text">Ctrl+clique para múltiplas seleções</span>
           </div>
           <select id="tipo_desafio" name="tipo_desafio[]" multiple onchange="mostrarCampoOutros(this)">
-            <option value="Redução de custos">💰 Redução de custos</option>
-            <option value="Prevenção de risco">⚠️ Prevenção de risco</option>
-            <option value="Receita incremental">📈 Receita incremental</option>
-            <option value="Nova receita">🆕 Nova receita</option>
-            <option value="Produtividade">🏭 Produtividade</option>
-            <option value="Reputação e Impacto social">🌍 Reputação e Impacto social</option>
+            <option value="Redução de custos">💰 Redução de custos: foco em diminuir gastos e despesas operacionais</option>
+            <option value="Prevenção de risco">⚠️ Prevenção de risco: atuar para evitar possíveis ameaças ou prejuízos inesperados</option>
+            <option value="Receita incremental">📈 Receita incremental: buscar e gerar ganhos adicionais, aumentando a receita de maneira proguessiva</option>
+            <option value="Nova receita">🆕 Nova receita: explorar oportunidades para adquirir fontes adicionais de renda ou criar novas linhas de receita</option>
+            <option value="Produtividade">🏭 Produtividade: Aprimorar a eficiência e otimizar processos para aumentar a produção ou rendimento</option>
+            <option value="Reputação e Impacto social">
+              🌍 Reputação e Impacto social: zelar pela imagem da empresa e promover ações que gerem impacto positivo na comunidade ou sociedade
+            </option>
             <option value="Outros">🔧 Outros</option>
           </select>
           <!-- Campo que será exibido quando a opção "Outros" for selecionada -->
@@ -279,7 +281,7 @@
         <div class="form-group">
           
           <label for="valor_agregado"
-            >Como sua ideia agrega valor (gera benefícios) e é importante para Sistema CNA/Senar/ICNA e/ou aos
+            >Como sua ideia agrega valor (gera benefícios) e é importante para o Sistema CNA/SENAR/ICNA e/ou aos
             produtores rurais?</label
           >
           <textarea id="valor_agregado" name="valor_agregado"></textarea>
@@ -287,7 +289,7 @@
         <div class="form-group">
           <label for="recursos"
             >Que recursos são necessários para transformar sua ideia em
-            realidade (financeiro, tempo, pessoal)?</label
+            realidade? <span class="sub-label">(financeiro, tempo, pessoal...)</span></label
           >
           <textarea id="recursos" name="recursos"></textarea>
         </div>
