@@ -393,3 +393,10 @@ p {
 .custom-checkbox {
     margin-right: 10px; /* Espaço entre o checkbox e o texto */
 }
+
+.sub-label {
+    font-size: smaller; /* Diminui o tamanho da fonte do sub-label */
+    color: #666; /* Cor cinza para o sub-label, opcional */
+    margin-left: 4px; /* Espaçamento entre o texto "Área" e o sub-label */
+  }
+  

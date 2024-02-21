@@ -34,11 +34,9 @@
           padding: 2rem 0px;
           font-size: 14px;
         }
-
         label {
           font-size: 15px;
         }
-
         .form-wrapper {
           width: 90%; /* Aumenta a largura para 90% da tela */
           max-width: 90%; /* Define uma largura máxima */
@@ -46,31 +44,25 @@
           padding: 5px;
           box-shadow: none;
         }
-
         .logo-container img {
           width: 100%; /* Reduz o tamanho do logo */
           margin-bottom: 0;
         }
-
         h3 {
           font-size: 20px;
           margin-top: 3rem;
           margin-bottom: 0.5rem;
         }
-
         .title-block h2 {
           font-size: 20px;
         }
-
         p {
           font-size: 14px;
         }
-
         .form-group2 {
           width: 96%;
           margin-left: 2rem;
         }
-
         .form-group {
           width: 90%; /* Garante que os inputs ocupem a largura total */
           margin-left: 2rem;
@@ -79,7 +71,6 @@
           width: 96%; /* Garante que os inputs ocupem a largura total */
           margin-left: 2rem;
         }
-        
         .form-group.input-icon {
           width: 85%;
         }
@@ -94,7 +85,6 @@
           border-radius: 5px;
           margin-bottom: 0.7rem;
         }
-
         .form-instructions {
           color: #666; /* Cor discreta */
           background-color: #D9D9D9;
@@ -102,7 +92,6 @@
           border-radius: 5px;
           margin-bottom: 0.7rem;
         }
-      
         .form-instructions p {
           line-height: 1.5;
           margin: 0;
@@ -121,20 +110,16 @@
           padding-bottom: 10px;
           padding-top: 10px;
         }
-      
         .form-instructions p strong {
           color: #000; /* Cor mais destacada para o texto em negrito */
           font-weight: bold;
         }
-
-
         .row,
         .flex-row {
           flex-direction: column;
           gap: 5px;
           margin-bottom: 2rem;
         }
-
         .form-group input[type="text"],
         .form-group input[type="url"],
         .form-group select,
@@ -142,7 +127,6 @@
           max-width: 100%; /* Garante que os elementos de formulário não excedam a largura da tela */
           box-sizing: border-box; /* Inclui padding e bordas na largura total */
         }
-
         .form-group input[type="submit"] {
           width: auto;
           padding: 10px 20px;
@@ -164,7 +148,7 @@
         </div>
         <h3 class"headerh3">
           Formulário de inscrição para o
-          <strong>Prêmio CNA de Inovação 2024</strong>
+          <strong>Prêmio CNA de Inovação 2024 - Alysson</strong>
         </h3>
         <p class="pheader">
           Agregar valor à cultura organizacional do Sistema CNA/Senar/ICNA é um
@@ -192,8 +176,8 @@
           <label for="email_usuario">E-mail</label>
           <input type="text" id="email_usuario" name="email_usuario" />
         </div>        
-        <div class="row">
-          <div class="form-group2">
+
+          <div class="form-group">
             <label for="departamento">Departamento</label>
             <select id="departamento" name="departamento">
               <option value="CNA">CNA</option>
@@ -201,13 +185,13 @@
               <option value="ICNA">ICNA</option>
             </select>
           </div>
-          <div class="form-group3">
-            <label for="area"
-              >Área (Jurídico, RH, Administrativo, Financeiro...)</label
-            >
+          <div class="form-group">
+            <label for="area">
+              Área <span class="sub-label">(Jurídico, RH, Administrativo e Financeiro, Assistência Técnica, entre outras)</span>
+            </label>
             <input type="text" id="area" name="area" />
-          </div>
-        </div>
+          </div>                  
+
         <div class="title-block">
           <h2><i class="fas fa-bomb"></i>Sobre o Problema</h2>
         </div>
@@ -216,13 +200,13 @@
             <p>Descreva claramente seu problema ou oportunidade, o resultado esperado e sua importância. Especifique o desafio e os benefícios da sua solução.</p>
           </div>
           <label for="descricao"
-            >Descrição detalhada do problema/oportunidade (o quê)</label
+            >Descrição detalhada sobre o problema ou oportunidade identificado (o quê)</label
           >
           <textarea id="descricao" name="descricao"></textarea>
         </div>
         <div class="form-group">
           <label for="resultado_esperado"
-            >Resultado esperado (o que está tentando atingir)</label
+            >Qual resultado você deseja alcançar ou está tentando atingir com essa ideia?</label
           >
           <textarea
             id="resultado_esperado"
@@ -231,79 +215,47 @@
         </div>
         <div class="form-group">
           <label for="necessidade"
-            >Necessidade ou relevância (motivo pelo qual queremos resolver esse
-            problema ou aproveitar essa oportunidade)</label
+            >Necessidade ou relevância (razão ou motivo pelo qual queremos resolver esse problema ou aproveitar essa oportunidade)</label
           >
           <textarea id="necessidade" name="necessidade"></textarea>
         </div>
         <div class="form-group">
           <div class="flex-container">
             <label for="tipo_desafio">Selecione o(s) tipo(s) de desafio</label>
-            <span class="right-aligned-text"
-              >Ctrl+clique para múltiplas seleções</span
-            >
+            <span class="right-aligned-text">Ctrl+clique para múltiplas seleções</span>
           </div>
-          <select id="tipo_desafio" name="tipo_desafio[]" multiple>
+          <select id="tipo_desafio" name="tipo_desafio[]" multiple onchange="mostrarCampoOutros(this)">
             <option value="Redução de custos">💰 Redução de custos</option>
             <option value="Prevenção de risco">⚠️ Prevenção de risco</option>
             <option value="Receita incremental">📈 Receita incremental</option>
             <option value="Nova receita">🆕 Nova receita</option>
             <option value="Produtividade">🏭 Produtividade</option>
-            <option value="Reputação e Impacto social">
-              🌍 Reputação e Impacto social
-            </option>
+            <option value="Reputação e Impacto social">🌍 Reputação e Impacto social</option>
             <option value="Outros">🔧 Outros</option>
           </select>
-        </div>
+          <!-- Campo que será exibido quando a opção "Outros" for selecionada -->
+          <div id="campo_outros" style="display:none">
+            <label for="outro_tipo_desafio">Especifique outro tipo de desafio:</label>
+            <input type="text" id="outro_tipo_desafio" name="outro_tipo_desafio" />
+          </div>
+        </div>        
         <div class="title-block">
           <h2><i class="fas fa-lightbulb"></i> Sobre a Solução</h2>
         </div>
+        <div class="form-group">
+          <div class="form-instructions"> <!-- Contêiner para o texto -->
+            <p>Anexar documentos, vídeos ou PDFs é opcional, mas pode destacar sua proposta. Use-os para mostrar claramente o valor da sua ideia.</p>
+          </div>
+        </div>
       
         <div class="form-group">
-          <div class="form-instructions">
-            <p><strong>Explicação da Ideia:</strong> Resuma sua proposta, destacando a inovação e como ela soluciona o desafio. Seja breve e direto.</p>
-            <p><strong>Valor Agregado:</strong> Relate os benefícios para o Sistema CNA/Senar/ICNA ou produtores rurais. Enfatize o impacto positivo.</p>
-            <p><strong>Recursos Necessários:</strong> Liste os recursos necessários (financeiros, temporais, humanos) para a realização da sua ideia.</p>
-            <p><strong>Tentativas em Andamento:</strong> Se houver iniciativas relacionadas em progresso, descreva-as brevemente, incluindo estágio e resultados.</p>
-          </div>
-
           <label for="explicacao"
-            >Explique concisamente sua ideia para resolver esse desafio e por
+            >Explique resumidamente sua ideia para resolver esse desafio e por
             que ela é inovadora</label
           >
           <textarea id="explicacao" name="explicacao"></textarea>
         </div>
-        <div class="form-group">
-          
-          <label for="valor_agregado"
-            >Como sua ideia agrega valor ao Sistema CNA/Senar/ICNA e/ou aos
-            produtores rurais?</label
-          >
-          <textarea id="valor_agregado" name="valor_agregado"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="recursos"
-            >Que recursos são necessários para transformar sua ideia em
-            realidade (financeiro, tempo, pessoal)?</label
-          >
-          <textarea id="recursos" name="recursos"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="tentativas"
-            >Há tentativas em andamento? Se sim, qual?</label
-          >
-          <input type="text" id="tentativas" name="tentativas" />
-        </div>
-        <div class="title-block">
-          <h2><i class="fas fa-upload"></i> Anexos</h2>
-        </div>
-        
         <div class="flex-column"> <!-- Use flex-column para organizar os elementos verticalmente -->
-          <div class="form-group">
-            <div class="form-instructions"> <!-- Contêiner para o texto -->
-              <p>Anexar documentos, vídeos ou PDFs é opcional, mas pode destacar sua proposta. Use-os para mostrar claramente o valor da sua ideia.</p>
-            </div>
-          </div>
           <div class="flex-row"> <!-- Contêiner para os inputs, ainda permite disposição em linha se necessário -->
             <div class="form-group input-icon">
               <label for="anexar_documentos">Anexar Documentos</label>
@@ -324,6 +276,27 @@
               />
             </div>
           </div>
+        <div class="form-group">
+          
+          <label for="valor_agregado"
+            >Como sua ideia agrega valor (gera benefícios) e é importante para Sistema CNA/Senar/ICNA e/ou aos
+            produtores rurais?</label
+          >
+          <textarea id="valor_agregado" name="valor_agregado"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="recursos"
+            >Que recursos são necessários para transformar sua ideia em
+            realidade (financeiro, tempo, pessoal)?</label
+          >
+          <textarea id="recursos" name="recursos"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tentativas"
+            >Há tentativas de implementação dessa ideia em andamento? Se sim, qual?</label
+          >
+          <input type="text" id="tentativas" name="tentativas" />
+        </div>
           <div class="form-group">
             <div class="checkbox-main-container">
               <div class="checkbox-container">
@@ -342,6 +315,11 @@
       </form>
     </div>
     <script>
+      function mostrarCampoOutros(select) {
+        var opcaoOutros = select.options[select.selectedIndex].value === "Outros";
+        document.getElementById('campo_outros').style.display = opcaoOutros ? 'block' : 'none';
+      }
+      
       document.addEventListener("DOMContentLoaded", (event) => {
         const urlParams = new URLSearchParams(window.location.search);
         const success = urlParams.get("success");
