@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iCNA | INSCRIÇÕES REALIZADAS</title>
+    <title>ICNA | INSCRIÇÕES REALIZADAS</title>
     <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -12,64 +13,50 @@
         color: #005146;
         padding: 20px;
       }
-
       h1 {
         color: #005146;
       }
-
       table {
         width: 100%;
         border-collapse: collapse;
       }
-
       th,
       td {
         padding: 10px;
         border: 1px solid #ddd;
       }
-
       thead {
         background-color: #bea745;
         color: #fff;
       }
-
       tbody tr:hover {
         background-color: #f0f0f0;
       }
-
       a {
-        color: #bea745;
+        color: #005146;
         text-decoration: none;
       }
-
       a:hover {
         text-decoration: underline;
       }
-
       .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
       .download-btn {
         display: inline-block;
         padding: 10px 20px;
-        background-image: linear-gradient(
-          to right,
-          #bea745,
-          #9c8f35
-        ); /* Degradê do dourado claro para o dourado mais escuro */
-        color: #fff; /* Cor do texto */
-        text-decoration: none; /* Remove o sublinhado do link */
-        border-radius: 5px; /* Borda arredondada para o botão */
-        font-weight: bold; /* Texto em negrito */
-        border: none; /* Removendo borda padrão do botão, caso exista */
-        cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        background-image: linear-gradient(to right, #bea745, #9c8f35);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
       }
-
       .download-btn:hover {
-        background-color: #a8963e; /* Cor de fundo do botão ao passar o mouse */
+        background-color: #a8963e;
       }
     </style>
   </head>
@@ -82,23 +69,20 @@
         >
       </div>
     </div>
-
     <table>
       <thead>
         <tr>
-          <th>Nome do Desafio</th>
           <th>Responsável</th>
           <th>Departamento</th>
           <th>Área</th>
           <th>Descrição</th>
           <th>Anexos</th>
-          <!-- Adicione mais cabeçalhos de tabela conforme necessário -->
+          <th>Ficha</th>
         </tr>
       </thead>
       <tbody>
         {% for inscricao in inscricoes %}
         <tr>
-          <td>{{ inscricao.nome_desafio }}</td>
           <td>{{ inscricao.responsavel }}</td>
           <td>{{ inscricao.departamento }}</td>
           <td>{{ inscricao.area }}</td>
@@ -106,13 +90,113 @@
           <td>
             {% if inscricao.anexo_url %}
             <a href="{{ inscricao.anexo_url }}" target="_blank">Ver Anexo</a>
-            <!-- Link para o anexo -->
             {% else %} Sem anexo {% endif %}
           </td>
-          <!-- Adicione mais células conforme necessário -->
+          <td>
+            <a
+              href="{{ url_for('ficha_inscricao', inscricao_id=inscricao.id) }}"
+              >Ver Ficha</a
+            >
+          </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    <div>
+      <h2 style="margin-top: 2rem">Evolução das Inscrições</h2>
+      <div
+        style="
+          width: 500px;
+          background-color: #ccc;
+          padding: 10px;
+          border-radius: 5px;
+        "
+      >
+        <canvas id="graficoInscricoes"></canvas>
+      </div>
+      <div>
+        <h2 style="margin-top: 2rem">Por Departamento</h2>
+        <div
+          style="
+            width: 100%;
+            background-color: #ccc;
+            padding: 10px;
+            border-radius: 5px;
+          "
+        >
+          <canvas id="graficoDepartamento"></canvas>
+        </div>
+      </div>
+    </div>
   </body>
+  <script>
+    fetch("/dados_inscricoes")
+      .then((response) => response.json())
+      .then((dados) => {
+        const ctx = document
+          .getElementById("graficoInscricoes")
+          .getContext("2d");
+        const chart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: dados.map((d) => d.data),
+            datasets: [
+              {
+                label: "Inscrições por Data",
+                data: dados.map((d) => d.quantidade),
+                backgroundColor: "#005146",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // Adicionado para remover a legenda
+              },
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                grid: {
+                  display: false,
+                },
+              },
+            },
+          },
+        });
+        const ctxPie = document
+          .getElementById("graficoDepartamento")
+          .getContext("2d");
+        new Chart(ctxPie, {
+          type: "pie",
+          data: {
+            labels: dados.por_departamento.map((d) => d.departamento),
+            datasets: [
+              {
+                label: "Inscrições por Departamento",
+                data: dados.por_departamento.map((d) => d.quantidade),
+                backgroundColor: [
+                  // Adicione aqui as cores para cada departamento
+                  "#005146",
+                  "#bea745",
+                  "#9c8f35",
+                  // Adicione mais cores conforme necessário
+                ],
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: true, // Pode ajustar conforme a necessidade
+              },
+            },
+          },
+        });
+      });
+  </script>
 </html>

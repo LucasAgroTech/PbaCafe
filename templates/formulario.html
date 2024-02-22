@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>iCNA | PRÊMIO CNA DE INOVAÇÃO 2024 - ALYSSON PAOLINELLI</title>
+    <title>ICNA | PRÊMIO CNA DE INOVAÇÃO 2024 - ALYSSON PAOLINELLI</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8" />
     <link
       rel="stylesheet"
@@ -28,14 +28,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+      .custom-confirm-button-class {
+        background-image: linear-gradient(to right, #005146, #005146) !important;
+        border: 0; /* Remove a borda padrão, se desejado */
+        color: white; /* Altera a cor do texto, se necessário */
+        /* Adicione outras propriedades de estilo conforme necessário */
+      }
+    
       /* Estilizações específicas para dispositivos móveis */
       @media (max-width: 768px) {
         body {
           padding: 2rem 0px;
           font-size: 14px;
         }
+        .container {
+          display: none;
+        }
         label {
-          font-size: 15px;
+          font-size: 14px;
         }
         .form-wrapper {
           width: 90%; /* Aumenta a largura para 90% da tela */
@@ -143,7 +153,7 @@
   </head>
   <body>
     <div class="form-wrapper">
-      <form action="/inscricao" method="post" enctype="multipart/form-data">
+      <form action="/inscricao" method="post" enctype="multipart/form-data" id="FormID">
         <div class="logo-container">
           <img src="static/logo.svg" alt="Logo Esquerda" class="logo-left" />
         </div>
@@ -152,17 +162,13 @@
           <strong>Prêmio CNA de Inovação 2024</strong>
         </h3>
         <p class="pheader">
-          Agregar valor à cultura organizacional do Sistema CNA/Senar/ICNA, transformando ideias em resultados, é um dos objetivos desta premiação. Buscamos reconhecer e premiar o profissional que mais se destacar na proposição de uma iniciativa inovadora, estimulando o reconhecimento e a melhoria contínua das atividades cotidianas e dos serviços prestados. Incentivamos os funcionários a apresentarem propostas e iniciativas inovadoras que contribuam para a melhoria de processos, produtos e serviços em suas áreas/departamentos de atuação, premiando aquele que obtiver maior destaque.
+          Agregar valor à cultura organizacional do Sistema CNA/SENAR/ICNA, transformando ideias em resultados, são objetivos desta premiação.
         </p>
         <div class="title-block">
           <h2><i class="fas fa-user"></i> Informações do Participante</h2>
         </div>
         <div class="form-group">
-          <label for="nome_desafio">Nome do desafio</label>
-          <input type="text" id="nome_desafio" name="nome_desafio" />
-        </div>
-        <div class="form-group">
-          <label for="responsavel">Responsável pela proposta</label>
+          <label for="responsavel">Nome</label>
           <input type="text" id="responsavel" name="responsavel" />
         </div>
         <div class="form-group">
@@ -171,7 +177,7 @@
         </div>        
 
           <div class="form-group">
-            <label for="departamento">Departamento</label>
+            <label for="departamento">Instituição</label>
             <select id="departamento" name="departamento">
               <option value="CNA">CNA</option>
               <option value="Senar">Senar</option>
@@ -186,67 +192,38 @@
           </div>                  
 
         <div class="title-block">
-          <h2><i class="fas fa-bomb"></i>Sobre o Problema</h2>
+          <h2><i class="fas fa-bomb"></i>Sobre a Oportunidade ou Problema</h2>
         </div>
         <div class="form-group">
           <div class="form-instructions">
             <p>Descreva claramente seu problema ou oportunidade, o resultado esperado e sua importância. Especifique o desafio e os benefícios da sua solução.</p>
           </div>
           <label for="descricao"
-            >Descrição detalhada sobre o problema ou oportunidade identificado<span class="sub-label">(o quê)</span></label
+            >Descrição detalhada sobre a oportunidade ou problema identificado<span class="sub-label">(o quê)</span></label
           >
           <textarea id="descricao" name="descricao"></textarea>
         </div>
         <div class="form-group">
           <label for="resultado_esperado"
-            >Qual resultado você deseja alcançar ou está tentando atingir com essa ideia?</label
+            >Qual resultado esperado?</label
           >
           <textarea
             id="resultado_esperado"
             name="resultado_esperado"
           ></textarea>
-        </div>
-        <div class="form-group">
-          <label for="necessidade"
-            >Necessidade ou relevância <span class="sub-label">(razão ou motivo pelo qual queremos resolver esse problema ou aproveitar essa oportunidade)</span></label
-          >
-          <textarea id="necessidade" name="necessidade"></textarea>
-        </div>
-        <div class="form-group">
-          <div class="flex-container">
-            <label for="tipo_desafio">Selecione o(s) tipo(s) de desafio</label>
-            <span class="right-aligned-text">Ctrl+clique para múltiplas seleções</span>
-          </div>
-          <select id="tipo_desafio" name="tipo_desafio[]" multiple onchange="mostrarCampoOutros(this)">
-            <option value="Redução de custos">💰 Redução de custos: foco em diminuir gastos e despesas operacionais</option>
-            <option value="Prevenção de risco">⚠️ Prevenção de risco: atuar para evitar possíveis ameaças ou prejuízos inesperados</option>
-            <option value="Receita incremental">📈 Receita incremental: buscar e gerar ganhos adicionais, aumentando a receita de maneira proguessiva</option>
-            <option value="Nova receita">🆕 Nova receita: explorar oportunidades para adquirir fontes adicionais de renda ou criar novas linhas de receita</option>
-            <option value="Produtividade">🏭 Produtividade: Aprimorar a eficiência e otimizar processos para aumentar a produção ou rendimento</option>
-            <option value="Reputação e Impacto social">
-              🌍 Reputação e Impacto social: zelar pela imagem da empresa e promover ações que gerem impacto positivo na comunidade ou sociedade
-            </option>
-            <option value="Outros">🔧 Outros</option>
-          </select>
-          <!-- Campo que será exibido quando a opção "Outros" for selecionada -->
-          <div id="campo_outros" style="display:none">
-            <label for="outro_tipo_desafio">Especifique outro tipo de desafio</label>
-            <input type="text" id="outro_tipo_desafio" name="outro_tipo_desafio" />
-          </div>
         </div>        
         <div class="title-block">
-          <h2><i class="fas fa-lightbulb"></i> Sobre a Solução</h2>
+          <h2><i class="fas fa-lightbulb"></i> Sobre a Proposta</h2>
         </div>
         <div class="form-group">
           <div class="form-instructions"> <!-- Contêiner para o texto -->
-            <p>Anexar documentos, vídeos ou PDFs é opcional, mas pode destacar sua proposta. Use-os para mostrar claramente o valor da sua ideia.</p>
+            <p>É permitido enviar documentos, vídeos, áudios, fotos, PDFs etc., para apresentar a proposta.</p>
           </div>
         </div>
       
         <div class="form-group">
           <label for="explicacao"
-            >Explique resumidamente sua ideia para resolver esse desafio e por
-            que ela é inovadora</label
+            >Escreva resumidamente sobre a proposta</label
           >
           <textarea id="explicacao" name="explicacao"></textarea>
         </div>
@@ -262,7 +239,7 @@
               />
             </div>
             <div class="form-group input-icon2">
-              <label for="link_materiais">Link de Materiais</label>
+              <label for="link_materiais">Link de Materiais (se couber)</label>
               <input
                 type="url"
                 id="link_materiais"
@@ -271,33 +248,32 @@
               />
             </div>
           </div>
+        </div>
         <div class="form-group">
-          
+          <div class="form-instructions"> <!-- Contêiner para o texto -->
+            <p>Mais informações sobre a proposta poderão ser solicitadas ao longo do processo de avaliação.</p>
+          </div>
+        </div>  
+        <div class="form-group">
           <label for="valor_agregado"
-            >Como sua ideia agrega valor (gera benefícios) e é importante para o Sistema CNA/SENAR/ICNA e/ou aos
-            produtores rurais?</label
+            >Benefícios gerados pela proposta</label
           >
           <textarea id="valor_agregado" name="valor_agregado"></textarea>
         </div>
         <div class="form-group">
-          <label for="recursos"
-            >Que recursos são necessários para transformar sua ideia em
-            realidade? <span class="sub-label">(financeiro, tempo, pessoal...)</span></label
+          <label for="informacoes"
+            >Comentários e informações adicionais</label
           >
-          <textarea id="recursos" name="recursos"></textarea>
+          <input type="text" id="informacoes" name="informacoes" />
         </div>
         <div class="form-group">
-          <label for="tentativas"
-            >Há tentativas de implementação dessa ideia em andamento? Se sim, qual?</label
-          >
-          <input type="text" id="tentativas" name="tentativas" />
-        </div>
-
-        <div class="form-group">
+          <div class="form-instructions-ult"> <!-- Contêiner para o texto -->
+            <p>Mais informações sobre a proposta poderão ser solicitadas ao longo do processo de avaliação.</p>
+          </div>
           <div class="checkbox-container">
-            <input type="checkbox" id="aceite_termos" name="aceite_termos" class="custom-checkbox" required>
+            <input type="checkbox" id="aceite_termos" name="aceite_termos" class="custom-checkbox">
             <label for="aceite_termos" class="checkbox-label">
-              Eu li e concordo com a <a href="URL_DA_POLITICA_DE_PRIVACIDADE" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="URL_DO_REGULAMENTO_DO_PREMIO" target="_blank">regulamento</a>.
+              Eu li e concordo com a <a href="https://cnabrasil.org.br/politica-privacidade" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="URL_DO_REGULAMENTO_DO_PREMIO" target="_blank">regulamento</a>.
             </label>
           </div>
           <input type="submit" value="Enviar" />
@@ -305,29 +281,60 @@
       </form>
     </div>
     <script>
-      function mostrarCampoOutros(select) {
-        var opcaoOutros = select.options[select.selectedIndex].value === "Outros";
-        document.getElementById('campo_outros').style.display = opcaoOutros ? 'block' : 'none';
-      }
+      document.getElementById('FormID').addEventListener('submit', function(e) {
+        e.preventDefault();
+      
+        var campos = [
+          { id: 'responsavel', nome: 'Responsável pela proposta' },
+          { id: 'email_usuario', nome: 'E-mail' },
+          { id: 'departamento', nome: 'Departamento', isSelect: true }, // Adicione a propriedade isSelect conforme necessário
+          { id: 'area', nome: 'Área' },
+          { id: 'descricao', nome: 'Descrição detalhada sobre o problema ou oportunidade' },
+          { id: 'resultado_esperado', nome: 'Resultado esperado' },
+          { id: 'explicacao', nome: 'Explicação da solução' },
+          { id: 'valor_agregado', nome: 'Valor agregado da ideia' },
+          { id: 'aceite_termos', nome: 'Aceite dos termos e política de privacidade', tipo: 'checkbox' }
+        ];
+      
+        for (var i = 0; i < campos.length; i++) {
+          var campo = campos[i];
+          var valor = document.getElementById(campo.id).value.trim();
+          var checked = campo.tipo === 'checkbox' ? document.getElementById(campo.id).checked : true;
+          if ((!valor || (campo.isSelect && valor === '')) && checked) { 
+            Swal.fire({
+              title: 'Campo Obrigatório!',
+              text: `Por favor, preencha o campo "${campo.nome}".`,
+              icon: 'warning',
+              confirmButtonText: 'Ok',
+              customClass: {
+                confirmButton: 'custom-confirm-button-class'
+              }
+            });
+            return;
+          }
+        }
+      
+        // Se todos os campos estiverem preenchidos, prossiga com a lógica de envio do formulário
+        this.submit();
+      });
+      
       
       document.addEventListener("DOMContentLoaded", (event) => {
         const urlParams = new URLSearchParams(window.location.search);
         const success = urlParams.get("success");
         if (success) {
           Swal.fire({
-            title: "Parabéns! Sua inscrição foi realizada com sucesso.",
-            html: `
-                      <p>Em breve, você receberá um e-mail com mais detalhes sobre sua inscrição.</p>
-                  `,
-            iconHtml:
-              '<img src="static/favicon.svg" alt="Ícone Personalizado" style="width: 50px; height: auto;">',
+            title: "Inscrição Realizada!",
+            html: `<p style="text-align: center;">Em breve, você receberá um e-mail com mais detalhes sobre sua inscrição.</p>`,
+            iconHtml: '<img src="static/favicon.svg" alt="Ícone Personalizado" style="width: 50px; height: auto;">',
             customClass: {
-              icon: "no-border",
+              confirmButton: 'custom-confirm-button-class'
             },
             confirmButtonText: "Ok",
           });
         }
       });
+      
     </script>
   </body>
 </html>

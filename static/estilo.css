@@ -38,7 +38,7 @@ form {
 .form-wrapper {
     max-width: 60%;
     margin: 0 auto;
-    padding-left: 10px;
+    padding-left: 0;
     background: linear-gradient(to left, #eeeeee, #ffffff);
     border-radius: 40px 40px 10px 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -274,14 +274,14 @@ select#tipo_desafio {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 10px;
     flex-direction: column;
     margin-left: 15px;
 }
 
 .logo-left, .logo-right {
     display: block;
-    max-width: 100.5%;
+    max-width: 100.2%;
     height: auto;
     object-fit: contain;
     margin-bottom: 1rem;
@@ -316,22 +316,22 @@ h3 strong {
 
 p {
     color: #333;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6; 
     margin: 0 auto; 
     text-align: justify;
     padding-right: 40px;
-    margin-bottom: 60px;
     margin-left: 0;
 }
 
 .pheader {
     margin-left: 40px;
+    margin-bottom: 30px;
 }
 
 .form-instructions2 {
     color: #666; /* Cor discreta */
-    background-color: #eaeaea;
+    background: linear-gradient(to bottom, #c1ac4e22, #c1ac4e22);
     width: 105%;
     border-radius: 10px;
     margin-bottom: 0.7rem;
@@ -339,9 +339,18 @@ p {
 
   .form-instructions {
     color: #666; /* Cor discreta */
-    background-color: #eaeaea;
+    background: linear-gradient(to bottom, #c1ac4e22, #c1ac4e22);
     width: 100%;
     border-radius: 10px;
+    margin-bottom: 0.7rem;
+  }
+
+  .form-instructions-ult {
+    color: #666; /* Cor discreta */
+    background: linear-gradient(to bottom, #c1ac4e22, #c1ac4e22);
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 1rem;
     margin-bottom: 0.7rem;
   }
 
@@ -354,6 +363,16 @@ p {
     padding-bottom: 10px;
     padding-top: 10px;
   }
+  .form-instructions-ult p {
+    line-height: 1.5;
+    margin: 0;
+    margin-left: 0;
+    width: 95%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
   .form-instructions2 p {
     line-height: 1.5;
     margin: 0;
@@ -394,4 +413,36 @@ p {
     color: #666; /* Cor cinza para o sub-label, opcional */
     margin-left: 4px; /* Espaçamento entre o texto "Área" e o sub-label */
   }
-  
+
+.custom-p {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #3D3D3D;
+    /* Adicione mais estilos conforme necessário */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 0 0 0 0;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, #c1ac4e22, #00514608); /* Degradê do cinza claro ao verde */
+  }
+
+  .container img {
+    height: 70px;
+    width: auto;
+    max-height: 100%;
+    margin-right: 20px; /* Espaçamento ajustado */
+  }
+
+  .custom-p {
+    font-size: 14px; /* Tamanho de fonte ajustado */
+    color: #333; /* Cor de fonte mais escura para melhor leitura */
+    margin: 0; /* Removendo margem padrão */
+    line-height: 1.5; /* Espaçamento de linha para melhor leitura */
+  }

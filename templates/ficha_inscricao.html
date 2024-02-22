@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ficha de Inscrição</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      p {
+        margin: 10px 0;
+        line-height: 1.6;
+      }
+      .label {
+        font-weight: bold;
+      }
+      .content {
+        margin-left: 10px;
+        color: #666;
+      }
+      .section {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ficha de Inscrição</h1>
+    <p>
+      <span class="label">Responsável:</span
+      ><span class="content">{{ inscricao.responsavel }}</span>
+    </p>
+    <p>
+      <span class="label">E-mail:</span
+      ><span class="content">{{ inscricao.email_usuario }}</span>
+    </p>
+    <p>
+      <span class="label">Departamento:</span
+      ><span class="content">{{ inscricao.departamento }}</span>
+    </p>
+    <p>
+      <span class="label">Área:</span
+      ><span class="content">{{ inscricao.area }}</span>
+    </p>
+
+    <div class="section">
+      <p><span class="label">Descrição da Oportunidade/Problema:</span></p>
+      <p class="content">{{ inscricao.descricao }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Resultado Esperado:</span></p>
+      <p class="content">{{ inscricao.resultado_esperado }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Explicação da Proposta:</span></p>
+      <p class="content">{{ inscricao.explicacao }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Valor Agregado:</span></p>
+      <p class="content">{{ inscricao.valor_agregado }}</p>
+    </div>
+
+    <p>
+      <span class="label">Link para Materiais Complementares:</span
+      ><span class="content">{{ inscricao.link_materiais }}</span>
+    </p>
+    <p>
+      <span class="label">Anexos:</span
+      ><span class="content">{{ inscricao.anexo_url }}</span>
+    </p>
+    <p>
+      <span class="label">Informações Adicionais:</span
+      ><span class="content">{{ inscricao.informacoes }}</span>
+    </p>
+    <p>
+      <span class="label">Aceite dos Termos:</span
+      ><span class="content"
+        >{{ "Sim" if inscricao.aceite_termos else "Não" }}
+      </span>
+    </p>
+  </body>
+</html>

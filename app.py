@@ -1,8 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, request, send_file
+from flask import Flask, render_template, redirect, url_for, request, send_file, jsonify
 from flask_mail import Mail, Message
+from sqlalchemy import func
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
-import io  # Para manipulação de arquivos em memória
+from datetime import datetime
+import io
 import pyexcel as p
 import cloudinary.uploader
 import cloudinary
@@ -34,45 +36,43 @@ mail = Mail(app)
 
 class Inscricao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nome_desafio = db.Column(db.String(120), nullable=False)
     responsavel = db.Column(db.String(120), nullable=False)
     email_usuario = db.Column(db.String(255), nullable=False)
     departamento = db.Column(db.String(50), nullable=False)
     area = db.Column(db.String(50), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     resultado_esperado = db.Column(db.Text, nullable=False)
-    necessidade = db.Column(db.Text, nullable=False)
-    tipo_desafio = db.Column(db.Text, nullable=False)
     explicacao = db.Column(db.Text, nullable=False)
     valor_agregado = db.Column(db.Text, nullable=False)
-    recursos = db.Column(db.Text, nullable=False)
-    tentativas = db.Column(db.String(120), nullable=True)
     link_materiais = db.Column(db.String(120), nullable=True)
     anexo_url = db.Column(db.String(255), nullable=True)
-    outro_tipo_desafio = db.Column(db.String(255), nullable=True)
+    informacoes = db.Column(db.String(255), nullable=True)
     aceite_termos = db.Column(db.Boolean, default=False, nullable=False)
+    data_hora = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
     def to_dict(self):
         return {
             "id": self.id,
-            "nome_desafio": self.nome_desafio,
+            "data_hora": self.data_hora.strftime("%Y-%m-%d %H:%M:%S"),
             "responsavel": self.responsavel,
             "email_usuario": self.email_usuario,
             "departamento": self.departamento,
             "area": self.area,
             "descricao": self.descricao,
             "resultado_esperado": self.resultado_esperado,
-            "necessidade": self.necessidade,
-            "tipo_desafio": self.tipo_desafio,
             "explicacao": self.explicacao,
             "valor_agregado": self.valor_agregado,
-            "recursos": self.recursos,
-            "tentativas": self.tentativas,
+            "informacoes": self.informacoes,
             "link_materiais": self.link_materiais,
             "anexo_url": self.anexo_url,
-            "outro_tipo_desafio": self.outro_tipo_desafio,
             "aceite_termos": self.aceite_termos,
         }
+
+
+@app.route("/ficha/<int:inscricao_id>")
+def ficha_inscricao(inscricao_id):
+    inscricao = Inscricao.query.get_or_404(inscricao_id)
+    return render_template("ficha_inscricao.html", inscricao=inscricao)
 
 
 def create_tables():
@@ -80,45 +80,33 @@ def create_tables():
         db.create_all()
 
 
-create_tables()
-
-
 @app.route("/inscricao", methods=["POST"])
 def add_inscricao():
-    nome_desafio = request.form["nome_desafio"]
     responsavel = request.form["responsavel"]
     email_usuario = request.form["email_usuario"]
     departamento = request.form["departamento"]
     area = request.form["area"]
     descricao = request.form["descricao"]
     resultado_esperado = request.form["resultado_esperado"]
-    necessidade = request.form["necessidade"]
-    tipo_desafio = request.form.getlist("tipo_desafio[]")
     explicacao = request.form["explicacao"]
     valor_agregado = request.form["valor_agregado"]
-    recursos = request.form["recursos"]
-    tentativas = request.form.get("tentativas", "")
     link_materiais = request.form.get("link_materiais", "")
+    informacoes = request.form.get("informacoes", "")
     aceite_termos = request.form.get("aceite_termos") == "on"
-    outro_tipo_desafio = request.form.get("outro_tipo_desafio", "")
 
     nova_inscricao = Inscricao(
-        nome_desafio=nome_desafio,
         responsavel=responsavel,
         email_usuario=email_usuario,
         departamento=departamento,
         area=area,
         descricao=descricao,
         resultado_esperado=resultado_esperado,
-        necessidade=necessidade,
-        tipo_desafio=",".join(tipo_desafio),
         explicacao=explicacao,
         valor_agregado=valor_agregado,
-        recursos=recursos,
-        tentativas=tentativas,
         link_materiais=link_materiais,
+        informacoes=informacoes,
         aceite_termos=aceite_termos,
-        outro_tipo_desafio=outro_tipo_desafio,
+        data_hora=datetime.utcnow(),
     )
 
     file_to_upload = request.files.get("anexar_documentos")
@@ -136,9 +124,6 @@ def add_inscricao():
 
     # Renderiza o template HTML como string, passando a variável 'responsavel' como 'nome_produtor'
     html_content = render_template("email_template.html", nome_produtor=responsavel)
-
-    # Dispara o e-mail após salvar a inscrição
-    send_email(to_email, subject, html_content)
 
     return redirect(url_for("index", success=True))
 
@@ -161,7 +146,7 @@ def formulario():
 
 @app.route("/inscricoes", methods=["GET"])
 def listar_inscricoes():
-    inscricoes = Inscricao.query.all()  # Busca todas as inscrições no banco de dados
+    inscricoes = Inscricao.query.all()
     return render_template("listar_inscricoes.html", inscricoes=inscricoes)
 
 
@@ -179,8 +164,39 @@ def download_excel():
     return send_file(
         output,
         as_attachment=True,
-        download_name="Inscricoes.xlsx",  # Use 'download_name' para especificar o nome do arquivo
+        download_name="Inscricoes.xlsx",
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
+
+
+@app.route("/dados_inscricoes")
+def dados_inscricoes():
+    dados_data = (
+        db.session.query(
+            func.date(Inscricao.data_hora).label("data"),
+            func.count(Inscricao.id).label("quantidade"),
+        )
+        .group_by(func.date(Inscricao.data_hora))
+        .all()
+    )
+
+    dados_departamento = (
+        db.session.query(
+            Inscricao.departamento, func.count(Inscricao.id).label("quantidade")
+        )
+        .group_by(Inscricao.departamento)
+        .all()
+    )
+
+    resultados_data = [
+        {"data": d[0].strftime("%Y-%m-%d"), "quantidade": d[1]} for d in dados_data
+    ]
+    resultados_departamento = [
+        {"departamento": d[0], "quantidade": d[1]} for d in dados_departamento
+    ]
+
+    return jsonify(
+        {"por_data": resultados_data, "por_departamento": resultados_departamento}
     )
 
 
