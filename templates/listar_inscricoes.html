@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ICNA | INSCRIÇÕES REALIZADAS</title>
     <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
@@ -14,7 +18,8 @@
         padding: 20px;
       }
       h1 {
-        color: #005146;
+        color: #fff;
+        margin-top: 24px;
       }
       table {
         width: 100%;
@@ -23,11 +28,12 @@
       th,
       td {
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #308176;
       }
       thead {
-        background-color: #bea745;
+        background-color: #005146;
         color: #fff;
+        text-align: left;
       }
       tbody tr:hover {
         background-color: #f0f0f0;
@@ -54,18 +60,42 @@
         font-weight: bold;
         border: none;
         cursor: pointer;
+        box-shadow: 2px 2px 0px #fff; /* Sombra branca sólida */
       }
       .download-btn:hover {
         background-color: #a8963e;
+      }
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #005146;
+        padding-left: 15px;
+        padding-right: 15px;
+        border: solid 1px #308176;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .logo-title-container {
+        /* Estilos para o novo contêiner */
+        display: flex;
+        align-items: center;
       }
     </style>
   </head>
   <body>
     <div class="header-container">
-      <h1>Inscrições</h1>
-      <div style="margin-bottom: 20px">
+      <div class="logo-title-container">
+        <img
+          src="negativo.png"
+          alt="Logo"
+          style="height: 35px; margin-right: 12px"
+        />
+        <h1>Inscrições</h1>
+      </div>
+      <div>
         <a href="/download_excel" class="download-btn"
-          >Baixar Inscrições (Excel)</a
+          ><i class="fas fa-file-excel"></i> Baixar Inscrições (Excel)</a
         >
       </div>
     </div>
@@ -102,101 +132,5 @@
         {% endfor %}
       </tbody>
     </table>
-    <div>
-      <h2 style="margin-top: 2rem">Evolução das Inscrições</h2>
-      <div
-        style="
-          width: 500px;
-          background-color: #ccc;
-          padding: 10px;
-          border-radius: 5px;
-        "
-      >
-        <canvas id="graficoInscricoes"></canvas>
-      </div>
-      <div>
-        <h2 style="margin-top: 2rem">Por Departamento</h2>
-        <div
-          style="
-            width: 100%;
-            background-color: #ccc;
-            padding: 10px;
-            border-radius: 5px;
-          "
-        >
-          <canvas id="graficoDepartamento"></canvas>
-        </div>
-      </div>
-    </div>
   </body>
-  <script>
-    fetch("/dados_inscricoes")
-      .then((response) => response.json())
-      .then((dados) => {
-        const ctx = document
-          .getElementById("graficoInscricoes")
-          .getContext("2d");
-        const chart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: dados.map((d) => d.data),
-            datasets: [
-              {
-                label: "Inscrições por Data",
-                data: dados.map((d) => d.quantidade),
-                backgroundColor: "#005146",
-              },
-            ],
-          },
-          options: {
-            plugins: {
-              legend: {
-                display: false, // Adicionado para remover a legenda
-              },
-            },
-            scales: {
-              x: {
-                grid: {
-                  display: false,
-                },
-              },
-              y: {
-                grid: {
-                  display: false,
-                },
-              },
-            },
-          },
-        });
-        const ctxPie = document
-          .getElementById("graficoDepartamento")
-          .getContext("2d");
-        new Chart(ctxPie, {
-          type: "pie",
-          data: {
-            labels: dados.por_departamento.map((d) => d.departamento),
-            datasets: [
-              {
-                label: "Inscrições por Departamento",
-                data: dados.por_departamento.map((d) => d.quantidade),
-                backgroundColor: [
-                  // Adicione aqui as cores para cada departamento
-                  "#005146",
-                  "#bea745",
-                  "#9c8f35",
-                  // Adicione mais cores conforme necessário
-                ],
-              },
-            ],
-          },
-          options: {
-            plugins: {
-              legend: {
-                display: true, // Pode ajustar conforme a necessidade
-              },
-            },
-          },
-        });
-      });
-  </script>
 </html>

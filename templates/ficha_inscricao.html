@@ -6,15 +6,17 @@
       body {
         font-family: Arial, sans-serif;
         margin: 20px;
-        padding: 20px;
+        padding-left: 1rem;
         border: 1px solid #ccc;
         border-radius: 10px;
         max-width: 600px;
         margin: auto;
+        margin-top: 2rem;
       }
       h1 {
-        text-align: center;
+        text-align: left;
         color: #333;
+        margin-bottom: 2rem;
       }
       p {
         margin: 10px 0;
@@ -35,7 +37,11 @@
     </style>
   </head>
   <body>
-    <h1>Ficha de Inscrição</h1>
+    <div class="header-container">
+      <div class="logo-title-container">
+        <h1>Ficha de Inscrição</h1>
+      </div>
+    </div>
     <p>
       <span class="label">Responsável:</span
       ><span class="content">{{ inscricao.responsavel }}</span>
@@ -73,23 +79,35 @@
       <p class="content">{{ inscricao.valor_agregado }}</p>
     </div>
 
-    <p>
-      <span class="label">Link para Materiais Complementares:</span
-      ><span class="content">{{ inscricao.link_materiais }}</span>
-    </p>
-    <p>
-      <span class="label">Anexos:</span
-      ><span class="content">{{ inscricao.anexo_url }}</span>
-    </p>
-    <p>
-      <span class="label">Informações Adicionais:</span
-      ><span class="content">{{ inscricao.informacoes }}</span>
-    </p>
-    <p>
-      <span class="label">Aceite dos Termos:</span
-      ><span class="content"
-        >{{ "Sim" if inscricao.aceite_termos else "Não" }}
-      </span>
-    </p>
+    <div class="section">
+      <p>
+        <span class="label">Link para Materiais Complementares:</span>
+        <span class="content">
+          {% if inscricao.link_materiais %}
+          <a href="{{ inscricao.link_materiais }}" target="_blank"
+            >Ver Materiais</a
+          >
+          {% else %} Não disponível {% endif %}
+        </span>
+      </p>
+      <p>
+        <span class="label">Anexos:</span>
+        <span class="content">
+          {% if inscricao.anexo_url %}
+          <a href="{{ inscricao.anexo_url }}" target="_blank">Ver Anexo</a>
+          {% else %} Não disponível {% endif %}
+        </span>
+      </p>
+      <p>
+        <span class="label">Informações Adicionais:</span>
+        <span class="content">{{ inscricao.informacoes }}</span>
+      </p>
+      <p>
+        <span class="label">Aceite dos Termos:</span>
+        <span class="content">
+          {{ "Sim" if inscricao.aceite_termos else "Não" }}
+        </span>
+      </p>
+    </div>
   </body>
 </html>

@@ -125,6 +125,9 @@ def add_inscricao():
     # Renderiza o template HTML como string, passando a variável 'responsavel' como 'nome_produtor'
     html_content = render_template("email_template.html", nome_produtor=responsavel)
 
+    # Dispara o e-mail após salvar a inscrição
+    send_email(to_email, subject, html_content)
+
     return redirect(url_for("index", success=True))
 
 
@@ -166,37 +169,6 @@ def download_excel():
         as_attachment=True,
         download_name="Inscricoes.xlsx",
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    )
-
-
-@app.route("/dados_inscricoes")
-def dados_inscricoes():
-    dados_data = (
-        db.session.query(
-            func.date(Inscricao.data_hora).label("data"),
-            func.count(Inscricao.id).label("quantidade"),
-        )
-        .group_by(func.date(Inscricao.data_hora))
-        .all()
-    )
-
-    dados_departamento = (
-        db.session.query(
-            Inscricao.departamento, func.count(Inscricao.id).label("quantidade")
-        )
-        .group_by(Inscricao.departamento)
-        .all()
-    )
-
-    resultados_data = [
-        {"data": d[0].strftime("%Y-%m-%d"), "quantidade": d[1]} for d in dados_data
-    ]
-    resultados_departamento = [
-        {"departamento": d[0], "quantidade": d[1]} for d in dados_departamento
-    ]
-
-    return jsonify(
-        {"por_data": resultados_data, "por_departamento": resultados_departamento}
     )
 
 
