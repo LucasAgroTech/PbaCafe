@@ -51,17 +51,20 @@
           width: 90%; /* Aumenta a largura para 90% da tela */
           max-width: 90%; /* Define uma largura máxima */
           margin: 0 auto; /* Centraliza horizontalmente */
-          padding: 5px;
+          padding: 0;
           box-shadow: none;
+          border-radius: 20px;
         }
         .logo-container img {
-          width: 100%; /* Reduz o tamanho do logo */
+          width: 101%;
           margin-bottom: 0;
         }
         h3 {
           font-size: 20px;
-          margin-top: 3rem;
+          margin-top: 2rem;
           margin-bottom: 0.5rem;
+          padding-left: 25px;
+          line-height: 1.5;
         }
         .title-block {
           margin-left: 20px;
@@ -84,12 +87,13 @@
           width: 96%; /* Garante que os inputs ocupem a largura total */
           margin-left: 2rem;
         }
-        .form-group.input-icon {
-          width: 85%;
-        }
         .form-group.input-icon2 {
           width: 90%; /* Garante que os inputs ocupem a largura total */
           margin-left: 2rem;
+        }
+        .input-icon {
+          position: relative;
+          max-width: 100%;
         }
         .form-instructions2 {
           color: #666; /* Cor discreta */
@@ -139,6 +143,9 @@
           max-width: 100%; /* Garante que os elementos de formulário não excedam a largura da tela */
           box-sizing: border-box; /* Inclui padding e bordas na largura total */
         }
+        .pheader {
+          margin-left: 25px;
+        }
         .form-group input[type="submit"] {
           width: auto;
           padding: 10px 20px;
@@ -159,10 +166,10 @@
         </div>
         <h3 class"headerh3">
           Formulário de inscrição para o
-          <strong>Prêmio CNA de Inovação 2024</strong>
+          <strong>Prêmio Alysson Paolinelli</strong>
         </h3>
         <p class="pheader">
-          Agregar valor à cultura organizacional do Sistema CNA/SENAR/ICNA, transformando ideias em resultados, são objetivos desta premiação.
+          Agregar valor à cultura organizacional do Sistema CNA/SENAR/ICNA, transformando ideias em resultados.
         </p>
         <div class="title-block">
           <h2><i class="fas fa-user"></i> Informações do Participante</h2>
@@ -192,12 +199,9 @@
           </div>                  
 
         <div class="title-block">
-          <h2><i class="fas fa-bomb"></i>Sobre a Oportunidade ou Problema</h2>
+          <h2><i class="fas fa-bomb"></i>Oportunidade ou Problema</h2>
         </div>
         <div class="form-group">
-          <div class="form-instructions">
-            <p>Descreva claramente seu problema ou oportunidade, o resultado esperado e sua importância. Especifique o desafio e os benefícios da sua solução.</p>
-          </div>
           <label for="descricao"
             >Descrição detalhada sobre a oportunidade ou problema identificado<span class="sub-label">(o quê)</span></label
           >
@@ -217,7 +221,7 @@
         </div>
         <div class="form-group">
           <div class="form-instructions"> <!-- Contêiner para o texto -->
-            <p>É permitido enviar documentos, vídeos, áudios, fotos, PDFs etc., para apresentar a proposta.</p>
+            <p>É permitido enviar documentos, vídeos, áudios, fotos, PDFs etc.</p>
           </div>
         </div>
       
@@ -236,35 +240,29 @@
                 id="anexar_documentos"
                 name="anexar_documentos"
                 multiple
+                class="file-input"
               />
-            </div>
+              <button type="button" id="customButton" class="custom-button">
+                <i class="fas fa-cloud-upload-alt"></i> <span style="font-weight: bold;">Upload</span>
+              </button>              
+            </div>            
             <div class="form-group input-icon2">
               <label for="link_materiais">Link de Materiais (se couber)</label>
               <input
                 type="url"
                 id="link_materiais"
                 name="link_materiais"
-                placeholder="https://..."
               />
             </div>
           </div>
         </div>
         <div class="form-group">
-          <div class="form-instructions"> <!-- Contêiner para o texto -->
-            <p>Mais informações sobre a proposta poderão ser solicitadas ao longo do processo de avaliação.</p>
-          </div>
         </div>  
-        <div class="form-group">
-          <label for="valor_agregado"
-            >Benefícios gerados pela proposta</label
-          >
-          <textarea id="valor_agregado" name="valor_agregado"></textarea>
-        </div>
         <div class="form-group">
           <label for="informacoes"
             >Comentários e informações adicionais</label
           >
-          <input type="text" id="informacoes" name="informacoes" />
+          <textarea type="text" id="informacoes" name="informacoes"></textarea>
         </div>
         <div class="form-group">
           <div class="form-instructions-ult"> <!-- Contêiner para o texto -->
@@ -292,7 +290,6 @@
           { id: 'descricao', nome: 'Descrição detalhada sobre o problema ou oportunidade' },
           { id: 'resultado_esperado', nome: 'Resultado esperado' },
           { id: 'explicacao', nome: 'Explicação da solução' },
-          { id: 'valor_agregado', nome: 'Valor agregado da ideia' },
           { id: 'aceite_termos', nome: 'Aceite dos termos e política de privacidade', tipo: 'checkbox' }
         ];
       
@@ -317,7 +314,10 @@
         // Se todos os campos estiverem preenchidos, prossiga com a lógica de envio do formulário
         this.submit();
       });
-      
+
+      document.getElementById('customButton').addEventListener('click', function() {
+        document.getElementById('anexar_documentos').click();
+      });      
       
       document.addEventListener("DOMContentLoaded", (event) => {
         const urlParams = new URLSearchParams(window.location.search);

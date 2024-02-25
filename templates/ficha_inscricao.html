@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ficha de Inscrição</title>
+    <title>ICNA | FICHA DE INSCRIÇÃO</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 20px;
-        padding-left: 1rem;
-        border: 1px solid #ccc;
         border-radius: 10px;
-        max-width: 600px;
+        max-width: 700px;
         margin: auto;
         margin-top: 2rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Sombra para destacar o modal */
       }
       h1 {
-        text-align: left;
-        color: #333;
-        margin-bottom: 2rem;
+        color: #fff;
+        margin-top: 24px;
+        font-size: 30px;
       }
       p {
         margin: 10px 0;
@@ -26,62 +28,132 @@
         font-weight: bold;
       }
       .content {
-        margin-left: 10px;
         color: #666;
       }
       .section {
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1px solid #eee;
+        margin-left: 15px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between; /* Espaça os elementos igualmente */
+        margin-left: 15px;
+      }
+
+      .column {
+        flex: 1; /* Faz cada coluna ocupar espaço igual na linha */
+        margin-bottom: 2px;
+      }
+
+      .column p {
+        flex: 1; /* Faz cada coluna ocupar espaço igual na linha */
+        padding: 0;
+      }
+
+      .label {
+        font-weight: bold; /* Estilo para o label */
+        margin-right: 0;
+      }
+
+      /* Ajuste o último item de cada linha para não ter margem à direita */
+      .row p:last-child {
+        margin-right: 0;
+      }
+
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-image: radial-gradient(circle at left, #005146, #0f4d11);
+        padding-left: 15px;
+        padding-right: 15px;
+        border: solid 1px #308176;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 10px;
+      }
+      .logo-title-container {
+        display: flex;
+        align-items: center;
+      }
+      footer {
+        text-align: left; /* Alinha o texto à esquerda */
+        font-size: 16px; /* Define o tamanho da fonte */
+        color: #fff; /* Define a cor do texto */
+        background-image: radial-gradient(circle at left, #005146, #0f4d11);
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 0 0 10px 10px;
+        border: solid 1px #005146;
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
     <div class="header-container">
       <div class="logo-title-container">
-        <h1>Ficha de Inscrição</h1>
+        <img
+          src="/static/negativo.png"
+          alt="Logo"
+          style="height: 30px; margin-right: 10px"
+        />
+        <h1>Inscrição</h1>
       </div>
     </div>
-    <p>
-      <span class="label">Responsável:</span
-      ><span class="content">{{ inscricao.responsavel }}</span>
-    </p>
-    <p>
-      <span class="label">E-mail:</span
-      ><span class="content">{{ inscricao.email_usuario }}</span>
-    </p>
-    <p>
-      <span class="label">Departamento:</span
-      ><span class="content">{{ inscricao.departamento }}</span>
-    </p>
-    <p>
-      <span class="label">Área:</span
-      ><span class="content">{{ inscricao.area }}</span>
-    </p>
-
-    <div class="section">
-      <p><span class="label">Descrição da Oportunidade/Problema:</span></p>
-      <p class="content">{{ inscricao.descricao }}</p>
+    <!-- Linha 1 -->
+    <div class="row">
+      <p class="column">
+        <span class="label">Nome:</span>
+        <span class="content">{{ inscricao.responsavel }}</span>
+      </p>
+      <p class="column">
+        <span class="label">E-mail:</span>
+        <span class="content">{{ inscricao.email_usuario }}</span>
+      </p>
     </div>
 
-    <div class="section">
-      <p><span class="label">Resultado Esperado:</span></p>
-      <p class="content">{{ inscricao.resultado_esperado }}</p>
-    </div>
-
-    <div class="section">
-      <p><span class="label">Explicação da Proposta:</span></p>
-      <p class="content">{{ inscricao.explicacao }}</p>
-    </div>
-
-    <div class="section">
-      <p><span class="label">Valor Agregado:</span></p>
-      <p class="content">{{ inscricao.valor_agregado }}</p>
+    <!-- Linha 2 -->
+    <div class="row">
+      <p class="column">
+        <span class="label">Departamento:</span>
+        <span class="content">{{ inscricao.departamento }}</span>
+      </p>
+      <p class="column">
+        <span class="label">Área:</span>
+        <span class="content">{{ inscricao.area }}</span>
+      </p>
     </div>
 
     <div class="section">
       <p>
-        <span class="label">Link para Materiais Complementares:</span>
+        <span class="label"
+          >Descrição detalhada sobre a oportunidade ou problema
+          identificado</span
+        >
+      </p>
+      <p class="content">{{ inscricao.descricao }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Resultado Esperado</span></p>
+      <p class="content">{{ inscricao.resultado_esperado }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Descrição da Proposta</span></p>
+      <p class="content">{{ inscricao.explicacao }}</p>
+    </div>
+
+    <div class="section">
+      <p><span class="label">Comentários e informações adicionais</span></p>
+      <p class="content">{{ inscricao.informacoes }}</p>
+    </div>
+
+    <div class="section">
+      <p>
+        <span class="label">Link's:</span>
         <span class="content">
           {% if inscricao.link_materiais %}
           <a href="{{ inscricao.link_materiais }}" target="_blank"
@@ -99,15 +171,12 @@
         </span>
       </p>
       <p>
-        <span class="label">Informações Adicionais:</span>
-        <span class="content">{{ inscricao.informacoes }}</span>
-      </p>
-      <p>
         <span class="label">Aceite dos Termos:</span>
         <span class="content">
           {{ "Sim" if inscricao.aceite_termos else "Não" }}
         </span>
       </p>
     </div>
+    <footer>Instituto CNA</footer>
   </body>
 </html>

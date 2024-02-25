@@ -38,15 +38,14 @@ class Inscricao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     responsavel = db.Column(db.String(120), nullable=False)
     email_usuario = db.Column(db.String(255), nullable=False)
-    departamento = db.Column(db.String(50), nullable=False)
-    area = db.Column(db.String(50), nullable=False)
+    departamento = db.Column(db.String(120), nullable=False)
+    area = db.Column(db.String(120), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     resultado_esperado = db.Column(db.Text, nullable=False)
     explicacao = db.Column(db.Text, nullable=False)
-    valor_agregado = db.Column(db.Text, nullable=False)
-    link_materiais = db.Column(db.String(120), nullable=True)
+    link_materiais = db.Column(db.String(255), nullable=True)
     anexo_url = db.Column(db.String(255), nullable=True)
-    informacoes = db.Column(db.String(255), nullable=True)
+    informacoes = db.Column(db.Text, nullable=True)
     aceite_termos = db.Column(db.Boolean, default=False, nullable=False)
     data_hora = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
@@ -61,7 +60,6 @@ class Inscricao(db.Model):
             "descricao": self.descricao,
             "resultado_esperado": self.resultado_esperado,
             "explicacao": self.explicacao,
-            "valor_agregado": self.valor_agregado,
             "informacoes": self.informacoes,
             "link_materiais": self.link_materiais,
             "anexo_url": self.anexo_url,
@@ -89,7 +87,6 @@ def add_inscricao():
     descricao = request.form["descricao"]
     resultado_esperado = request.form["resultado_esperado"]
     explicacao = request.form["explicacao"]
-    valor_agregado = request.form["valor_agregado"]
     link_materiais = request.form.get("link_materiais", "")
     informacoes = request.form.get("informacoes", "")
     aceite_termos = request.form.get("aceite_termos") == "on"
@@ -102,7 +99,6 @@ def add_inscricao():
         descricao=descricao,
         resultado_esperado=resultado_esperado,
         explicacao=explicacao,
-        valor_agregado=valor_agregado,
         link_materiais=link_materiais,
         informacoes=informacoes,
         aceite_termos=aceite_termos,
