@@ -58,7 +58,7 @@
         .logo-container img {
           width: 101%;
           margin-bottom: 0;
-        }
+        }     
         h3 {
           font-size: 20px;
           margin-top: 2rem;
@@ -243,8 +243,10 @@
                 class="file-input"
               />
               <button type="button" id="customButton" class="custom-button">
-                <i class="fas fa-cloud-upload-alt"></i> <span style="font-weight: bold;">Upload</span>
-              </button>              
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span style="font-weight: bold;">Upload</span>
+                <span id="fileName" class="file-name"></span>
+              </button>                          
             </div>            
             <div class="form-group input-icon2">
               <label for="link_materiais">Link de Materiais (se couber)</label>
@@ -271,7 +273,7 @@
           <div class="checkbox-container">
             <input type="checkbox" id="aceite_termos" name="aceite_termos" class="custom-checkbox">
             <label for="aceite_termos" class="checkbox-label">
-              Eu li e concordo com a <a href="https://cnabrasil.org.br/politica-privacidade" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="URL_DO_REGULAMENTO_DO_PREMIO" target="_blank">regulamento</a>.
+              Eu li e concordo com a <a href="https://cnabrasil.org.br/politica-privacidade" target="_blank">Política de Privacidade</a> do Sistema CNA/SENAR/ICNA e com o <a href="https://drive.google.com/file/d/1sskJBJX_PeKLyMlq7PSgTLwECYI8jcQM/view?usp=sharing" target="_blank">regulamento</a>.
             </label>
           </div>
           <input type="submit" value="Enviar" />
@@ -334,7 +336,15 @@
           });
         }
       });
-      
+      document.getElementById('anexar_documentos').addEventListener('change', function() {
+        var fileName = ''; // Nome do arquivo
+        if (this.files && this.files.length > 0) {
+          // Pega apenas o primeiro arquivo se houver múltiplos
+          fileName = this.files[0].name;
+        }
+        // Atualiza o texto do elemento span para mostrar o nome do arquivo
+        document.getElementById('fileName').textContent = fileName;
+      });     
     </script>
   </body>
 </html>

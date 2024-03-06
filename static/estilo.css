@@ -256,6 +256,18 @@ select#tipo_desafio {
   margin-bottom: 1rem;
   transition: transform 0.5s; /* Torna a transição mais lenta para 0.5 segundos */
 }
+
+.file-name {
+    flex-grow: 1;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px; /* Espaço entre o texto "Upload" e o nome do arquivo */
+    font-style: italic; /* Estilo para diferenciar do texto "Upload" */
+    font-size: 0.9em; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #ccc; /* Cor do texto para o nome do arquivo */
+  }
 .custom-button:hover {
     background-image: radial-gradient(circle at left, #005146, #005146e2);
     transform: scale(1.05);
